@@ -1,0 +1,37 @@
+<html>
+	<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Sign Up</title>
+		
+		<link rel="stylesheet" media="screen" href="css/auth.css">
+	</head>
+
+	<body>
+		<div class="auth-form">
+			<h2>Sign up to Pioupiou</h2>
+			<form method="POST" action="" class="signup">
+				<div class="form-field-group">
+					<div class="form-field">
+						<label for="user_name">Firstname</label>
+						<input type="text" name="user[name]" id="user_name" class="text-input" placeholder="Jack" autocomplete="off" required>
+					</div>
+
+					<div class="form-field">
+						<label for="user_login">Surname</label>
+						<input type="text" name="user[login]" id="user_login" class="text-input" placeholder="Bauer" autocomplete="off" required>
+					</div>
+				</div>
+								
+				<label for="password">Email</label>
+				<input type="email" name="user[email]" id="user_email" class="text-input" placeholder="jack.bauer@ctu-la.com" autocomplete="off" required>
+
+				<label for="user_password">Password</label>
+				<input type="password" name="user[password]" id="user_password" class="text-input" placeholder="6+ characters" required>
+
+				<button type="submit" class="form-sub">Create Account</button>
+				<p class="create_acc">Already have an account? <a href="login.html">Sign In</a></p>
+			</form>
+		</div>
+	</body>
+</html>
