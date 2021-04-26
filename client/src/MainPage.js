@@ -1,33 +1,15 @@
+import React from 'react';
 import './MainPage.css';
-import React, { useState } from 'react';
-import NavigationPanel from './NavigationPanel'
 
-function MainPage() {
-
-  const [currentPage, setCurrentPage] = useState('register');
-  const [isConnected, setConnected] = useState(false);
-  const [isRegistered, setRegistered] = useState(false);
-
-  const setLogout = () => {
-    if (isConnected) {
-      setConnected(false);
-      setCurrentPage('register');
-    }
-  }
-
-  const getConnected = () => {
-    if (!isConnected) {
-      setConnected(true);
-      setCurrentPage('messages');
-      !isRegistered && setRegistered(true);
-    }
-  }
+export default function MainPage(props) {
 
   return (
-    <div className="MainPage">
-      <NavigationPanel page={currentPage} login={getConnected} logout={setLogout} isConnected={isConnected}/>
+    <div>
+      <h1>Birdy</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quaerat quo temporibus, deserunt perspiciatis cumque, omnis est at quia suscipit esse molestiae quod placeat, illo explicabo quam libero illum aliquam.
+      </p>
+      <button onClick={props.logout}>Se déconnecter</button>
     </div>
   );
 }
-
-export default MainPage;
