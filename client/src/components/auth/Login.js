@@ -16,16 +16,16 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      setError("");
-      setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+    // try {
+    //   setError("");
+    //   setLoading(true);
+    //   await login(emailRef.current.value, passwordRef.current.value);
       history.push("/")
-    } catch {
-      setError("Failed to log in");
-    }
+    // } catch {
+    //   setError("Failed to log in");
+    // }
 
-    setLoading(false);
+    // setLoading(false);
   }
 
   return (
@@ -37,7 +37,7 @@ export default function Signup() {
           Password
           <Link className="link forgot-pwd-link" to="/forgot-password">Forgot password?</Link>
         </FormGroup>
-        <FormButton disabled={loading} onClick={() => {}}>Log In</FormButton>
+        <FormButton disabled={loading}>Log in</FormButton>
         <FormRouter value="Not registered yet? " to="/signup">Sign up</FormRouter>
       </Form>
     </div>

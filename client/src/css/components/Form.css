@@ -70,22 +70,9 @@
 
 .form-button {
     width: 100%;
-    padding: .8rem 0;
     margin: 1.625rem 0 2rem 0;
-    cursor: pointer;
 
-    color: white;
-    font-family: inherit;
-    font-size: 15px;
     font-weight: 600;
-
-    background-color: var(--clr-primary-400);
-    border: none;
-    border-radius: .25rem;
-}
-
-.form-button:hover {
-    filter: brightness(.8);
 }
 
 .form-router {

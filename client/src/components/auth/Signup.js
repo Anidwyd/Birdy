@@ -19,27 +19,29 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
-    }
+    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    //   return setError("Passwords do not match")
+    // }
 
-    try {
-      setError("");
-      setLoading(true);
+    history.push("/");
 
-      await signup(
-        firstnameRef.current.value,
-        lastnameRef.current.value,
-        emailRef.current.value,
-        passwordRef.current.value
-      );
+    // try {
+    //   setError("");
+    //   setLoading(true);
 
-      history.push("/")
-    } catch {
-      setError("Failed to log in");
-    }
+    //   await signup(
+    //     firstnameRef.current.value,
+    //     lastnameRef.current.value,
+    //     emailRef.current.value,
+    //     passwordRef.current.value
+    //   );
 
-    setLoading(false);
+    //   history.push("/")
+    // } catch {
+    //   setError("Failed to log in");
+    // }
+
+    // setLoading(false);
   }
 
   return (

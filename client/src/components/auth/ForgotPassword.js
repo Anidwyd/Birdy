@@ -33,7 +33,7 @@ export default function ForgotPassword() {
         {error && <label>error</label>}
         {message && <label>message</label>}
         <FormGroup id="email" type="email" ref={emailRef} placeholder="Enter email" required>Email</FormGroup>
-        <FormButton disabled={loading} onClick={() => {}}>Reset password</FormButton>
+        <FormButton disabled={loading}>Reset password</FormButton>
         <FormRouter value="Remembered just now? " to="/login">Log in</FormRouter>
       </Form>
     </div>

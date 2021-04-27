@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MessageForm(props){
   return (
-  <div className="login-form">
+    <div className="login-form">
       <h1>Poster</h1>
       <form>
         <textarea placeholder="Ecrivez votre message ici..."></textarea>

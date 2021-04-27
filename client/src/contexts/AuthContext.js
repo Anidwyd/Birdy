@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 const AuthContext = React.createContext();
 
@@ -33,6 +33,15 @@ export function AuthProvider({ children }) {
   function updatePassword(password) {
     // 
   }
+
+  useEffect(() => {
+    // const unsubscribe = axios.get(user => {
+    //   setCurrentUser(user);
+    //   setLoading(false);
+    // })
+    
+    // return unsubscribe;
+  }, [])
 
   const value = {
     currentUser,

@@ -32,7 +32,7 @@ export function FormGroup(props) {
 
 export function FormButton(props) {
   return (
-    <button disable={props.disable} className="form-button" onClick={props.onClick}>
+    <button disable={props.disable} className="btn-primary form-button" onClick={props.onClick}>
       { props.children }
     </button>
   );
