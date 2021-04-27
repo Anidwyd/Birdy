@@ -1,0 +1,20 @@
+/* GRID container */
+main {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "topbar  topbar   topbar"
+    "nav     content  sidebar";
+
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: 3.5rem auto;
+}
+
+/* GRID Items */
+header { grid-area: topbar; background-color: var(--clr-bg-500); }
+
+.navbar { grid-area: nav; }
+
+.content { grid-area: content; }
+
+aside { grid-area: sidebar; }
