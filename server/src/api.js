@@ -170,13 +170,13 @@ function init(db) {
 					res.status(400).send("Missing fields");
 				}
 				else if (user_id == friend_id) {
-					res.status(400).send("You can't be friend with yourself :(");
+					res.status(400).send("You can't be friends with yourself :(");
 				}
 				else {
 					if (! await users.exists(user_id) || ! await users.exists(friend_id)) {
 						res.status(410).json({
 							status: 410,
-							message: "Users doesn't exist"
+							message: "One of the users doesn't exist"
 						});
 					}
 					if (await friends.exists(user_id, friend_id)) {
@@ -252,4 +252,3 @@ function init(db) {
 	return router;
 }
 exports.default = init;
-
