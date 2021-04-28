@@ -1,13 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap');
+
+:root {
+  /* Colors */
+  --clr-primary-400: hsl(174, 77%, 47%);
+  --clr-primary-500: hsl(174, 60%, 32%);
+  --clr-primary-800: hsl(180, 22%, 18%);
+
+  --clr-bg-300: hsl(185, 15%, 20%);
+  --clr-bg-400: hsl(185, 15%, 17%);
+  --clr-bg-500: hsl(185, 15%, 14%);
+
+  --clr-txt-400: hsl(0, 0%, 100%);
+  --clr-txt-500: hsl(185, 5%, 44%);
+
+  --clr-border: hsl(206, 16%, 26%);
+
+  /* Typography */
+  --ff-primary: 'Montserrat', sans-serif;
+
+  /* Misc */
+  --border: 1px solid var(--clr-border);
+  --border-radius: .25rem;
+  --speed: 200ms;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background-color: var(--clr-bg-400);
+  font-family: var(--ff-primary);
+  color: var(--clr-txt-400);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app-container {
+  height: 100vh;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+
+  font-family: var(--ff-primary);
+  color: var(--clr-primary-400);
+}
+
+.link:hover {
+  filter: brightness(.8);
+}
+
+.btn-primary {
+  max-width: 400px;
+  padding: .8em;
+  cursor: pointer;
+
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+
+  background-color: var(--clr-primary-400);
+  border: none;
+  border-radius: var(--border-radius);
+}
+
+.btn-primary:hover {
+  filter: brightness(.8);
 }
