@@ -1,0 +1,36 @@
+.sidebar-stack {
+  margin: 1rem;
+  width: 350px;
+}
+
+.stack-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  background-color: var(--clr-bg-500);
+}
+
+.stack-title {
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.25rem;
+  border-bottom: var(--border);
+}
+
+.friend-card, .stack-more {
+  padding: 1rem;
+  transition: var(--speed);
+}
+
+.stack-more:hover, .friend-card:hover {
+  background-color: rgba(255, 255, 255, 0.025);
+  cursor: pointer;
+}
+
+.friend-card {
+  border-bottom: var(--border);
+}
+
+.stack-more {
+  color: var(--clr-primary-400);
+}

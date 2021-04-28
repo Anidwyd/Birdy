@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter } from '../Form';
 
-import '../../css/layouts/auth.css'
+import '../../styles/layouts/auth.css'
 
 export default function ForgotPassword() {
   const emailRef = useRef();

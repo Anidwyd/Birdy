@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import FriendList from '../friends/FriendList'
 
+import '../../styles/components/Sidebar.css'
+
 export default function Sidebar() {
   const [friends, setFriends] = useState([
     { username: 'michmich' },
@@ -20,7 +22,7 @@ export default function Sidebar() {
     <aside className="sidebar">
       <div className="sidebar-stack">
         <StackItem>
-          <h2 className="stack-title">Friend</h2>
+          <h2 className="stack-title">Friends</h2>
           <FriendList className="stack-list" friends={friends} />
           <span className="stack-more">See more</span>
         </StackItem>

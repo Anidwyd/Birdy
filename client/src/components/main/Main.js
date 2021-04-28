@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import '../../css/layouts/main.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Profile from './Profile';
 import Home from './Home';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
-export default function MainPage(props) {
+import '../../styles/layouts/main.css'
+
+export default function MainPage({ component }) {
 
   return (
     <Router>
@@ -17,8 +18,7 @@ export default function MainPage(props) {
         <Navbar />
 
         <div className="content">
-          <Route exact path="/" component={Home} />
-          <Route path="/profile" component={Profile} />
+          {component}
         </div>
 
         <Sidebar />

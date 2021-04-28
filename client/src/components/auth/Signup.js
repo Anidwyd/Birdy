@@ -3,11 +3,12 @@ import { useHistory } from 'react-router';
 import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter, FormInlineGroup } from '../Form';
 
-import '../../css/layouts/auth.css'
+import '../../styles/layouts/auth.css'
 
 export default function Signup() {
   const firstnameRef = useRef();
   const lastnameRef = useRef();
+  const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -52,6 +53,7 @@ export default function Signup() {
           <FormGroup id="firstname" type="text" ref={emailRef} placeholder="Jack" required>Firstname</FormGroup>
           <FormGroup id="lastname" type="text" ref={emailRef} placeholder="Bauer" required>Lastname</FormGroup>
         </FormInlineGroup>
+        <FormGroup id="username" type="text" ref={usernameRef} placeholder="Enter username (the @ thing !)" required>Username</FormGroup>
         <FormGroup id="email" type="email" ref={emailRef} placeholder="Enter email" required>Email</FormGroup>
         <FormGroup id="password" type="password" ref={passwordRef} placeholder="Enter password" required>Password</FormGroup>
         <FormGroup id="password" type="password" ref={passwordConfirmRef} placeholder="Repeat password" required>Confirm password</FormGroup>

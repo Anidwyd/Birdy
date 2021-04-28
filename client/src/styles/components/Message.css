@@ -1,0 +1,51 @@
+.msg-card {
+  padding: .75rem 1rem;
+  border-bottom: var(--border);
+}
+
+.msg-author {
+  font-weight: 700;
+}
+
+.msg-timestamp {
+  color: var(--clr-txt-500);
+}
+
+.msg-timestamp::before {
+  content: " · ";
+  font-weight: 500;
+}
+
+.msg-footer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+}
+
+.reaction-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--clr-txt-500);
+  font-size: 0.95rem;
+  transition: filter 300ms;
+  gap: .75rem;
+}
+
+.reaction-btn:hover {
+  color: var(--clr-primary-400);
+}
+
+.reaction-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: var(--clr-txt-500);
+}
+
+.msg-reaction:hover svg {
+  stroke: var(--clr-primary-400);
+}
