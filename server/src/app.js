@@ -8,6 +8,12 @@ console.debug(`Base directory: ${basedir}`);
 // Connexion à la bd
 const sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(':memory');
+var Datastore = require('nedb')
+
+var msgdb = {};
+msgdb.messages = new Datastore();
+msgdb.messages.loadDatabase();
+msgdb.messages.createIndex({author_name: "text", content: "text"})
 
 express = require('express');
 const app = express()
@@ -17,7 +23,7 @@ app.use(session({
     secret: "technoweb rocks"
 }));
  
-app.use('/api', api.default(db));
+app.use('/api', api.default(db, msgdb));
 
 // Démarre le serveur
 app.on('close', () => {
