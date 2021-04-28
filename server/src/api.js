@@ -319,19 +319,12 @@ function init(db, msgdb) {
 		router.route("feed")
 		.get((req, res) => {
 			try {
-				const friend_list = friends.get(req.session.user_id);
-				friend_list.forEach( async (friend_id) => {
-					try {
-						const friend_feed = await messages.get(friend_id);
-						if (!friend)
-							res.sendStatus(404);
-						else
-							res.send(friend);
-					}
-					catch (e) {
-						res.status(500).send(e);
-					}
-				});
+				const feed = messages.getFeed(req.session.user_id, friends);
+				if(feed){
+					res.send(feed)
+				} else {
+					res.send(404)
+				}
 			}
 			catch (e) {
 				res.status(500).send(e);
