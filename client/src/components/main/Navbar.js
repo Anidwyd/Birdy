@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as BellIcon } from '../../icons/bell.svg'
 import { ReactComponent as HomeIcon } from '../../icons/home.svg'
 import { ReactComponent as ProfileIcon } from '../../icons/profile.svg'
+import { ReactComponent as BookmarkIcon } from '../../icons/bookmark.svg'
+
+import '../../styles/components/Navbar.css'
 
 export default function Navbar() {
   function NavItem(props) {
@@ -21,7 +23,7 @@ export default function Navbar() {
       <ul className="navbar-nav">
         <NavItem to="/"><HomeIcon />Home</NavItem>
         <NavItem to="/profile"><ProfileIcon />Profile</NavItem>
-        <NavItem to="/notifs"><BellIcon />Notifications</NavItem>
+        <NavItem to="/notifs"><BookmarkIcon />Bookmarks</NavItem>
       </ul>
     </nav>
   )

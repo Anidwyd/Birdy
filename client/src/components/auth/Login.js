@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter } from '../Form';
 
-import '../../css/layouts/auth.css'
+import '../../styles/layouts/auth.css'
 
 export default function Signup() {
   const emailRef = useRef();

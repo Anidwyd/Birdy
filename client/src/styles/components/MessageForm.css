@@ -1,0 +1,29 @@
+.new-msg-container {
+  padding: 1rem;
+}
+
+.msg-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-input {
+  outline: none;
+  background: none;
+  border: none;
+  resize: none;
+  padding: .75rem 0;
+  
+  color: var(--clr-txt-400);
+  font-size: 1.25rem;
+}
+
+.msg-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: .75rem;
+}
+
+.msg-form-btn {
+  padding: 1em 1.875em !important;
+}

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter } from '../Form';
 
-import '../../css/layouts/auth.css'
+import '../../styles/layouts/auth.css'
 
 export default function UpdateProfile() {
   const emailRef = useRef();

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../css/components/Form.css'
+import '../styles/components/Form.css'
 import { Link } from 'react-router-dom'
 
 export default function Form(props) {
