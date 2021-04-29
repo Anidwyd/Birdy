@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
 import '../../styles/layouts/main.css'
+import Header from './Header';
 
 export default function MainPage({ component }) {
 
@@ -13,7 +14,7 @@ export default function MainPage({ component }) {
     <Router>
       <main>
         
-        <header>Header</header>
+        <Header>Header</Header>
 
         <Navbar />
 

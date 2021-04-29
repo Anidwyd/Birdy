@@ -1,6 +1,17 @@
 .sidebar-stack {
-  margin: 1rem;
-  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 0 1rem;
+  max-width: 350px;
+}
+
+.search-container {
+  position: sticky;
+  padding-top: 1em;
+  background-color: var(--clr-bg-400);
+  top: 0px;
+  z-index: 3;
 }
 
 .stack-item {
