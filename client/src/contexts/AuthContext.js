@@ -37,7 +37,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     // const unsubscribe = axios.get(user => {
     //   setCurrentUser(user);
-    //   setLoading(false);
+      setLoading(false);
     // })
     
     // return unsubscribe;

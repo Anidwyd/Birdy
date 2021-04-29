@@ -9,7 +9,7 @@ export default function SearchBar() {
     <form>
       <div className="searchbar input">
         <span className="search-icon"><SearchIcon /></span>
-        <input type="text" class="search-input" placeholder="Search..." />
+        <input className="search-input" type="text" placeholder="Search..." />
       </div>
     </form>
   );

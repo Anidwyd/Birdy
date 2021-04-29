@@ -19,11 +19,6 @@
   margin-top: auto;
 }
 
-.logo svg {
-  width: 2rem !important;
-  height: 2rem !important;
-}
-
 .nav-link {
   text-decoration: none;
   color: var(--clr-txt-400);
@@ -59,4 +54,15 @@
 
 .nav-link:hover svg, .active svg {
   stroke: var(--clr-primary-400);
+}
+
+/* gestion du logo */
+
+.logo {
+  padding: .5rem !important;
+}
+
+.logo svg {
+  width: 2rem !important;
+  height: 2rem !important;
 }
