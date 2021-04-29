@@ -302,6 +302,20 @@ function init(db, msgdb) {
 				res.status(500).send(e);
 			}
 		})
+		// Liker un message
+		.get((req, res) => {
+			try {
+				const status = messages.like(req.session.user_id, req.params.message_id);
+				if(status){
+					res.send(status)
+				} else {
+					res.sendStatus(404);
+				}
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		})
 		// Suppression de message
 		.delete((req, res, next) => {
 			try {
