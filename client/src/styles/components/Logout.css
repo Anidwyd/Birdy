@@ -1,0 +1,23 @@
+.logout-container {
+  width: 90%;
+  margin: 1em 0;
+}
+
+.logout-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.close-icon {
+  display: none;
+}
+
+.close-icon svg {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: var(--clr-txt-400);
+  stroke-width: 2px;
+}

@@ -10,7 +10,7 @@ export default function Message({ index, author, content, timestamp, comments, l
   return (
     <article key={index} className='msg-card'>
       <div className="msg-header">
-        <a className="msg-author">{author}</a>
+        <span className="msg-author">{author}</span>
         <span className="msg-timestamp">{timestamp}</span>
       </div>
       <div className="msg-body">

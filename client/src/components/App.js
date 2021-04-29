@@ -6,8 +6,6 @@ import Main from './main/Main';
 import Login from './auth/Login';
 import ForgotPassword from './auth/ForgotPassword';
 import UpdateProfile from './auth/UpdateProfile';
-import Home from './main/Home';
-import Profile from './main/Profile';
 
 // import PrivateRoute from './PrivateRoute';
 
@@ -18,18 +16,11 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            {/* <Route exact path="/" component={Main} /> */}
-            {/* <Route exact path="/home" component={<Main content={<Home/>} />} /> */}
-            <Route exact path="/">
-              <Main component={<Home/>} />
-            </Route>
-            <Route path="/profile">
-              <Main component={<Profile/>} />
-            </Route> 
-            <Route path="/update-profile" component={UpdateProfile} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/login" component={Login} />
-            <Route path="/forgot-password" component={ForgotPassword} />
+            <Route exact path="/update-profile" component={ UpdateProfile } />
+            <Route exact path="/signup" component={ Signup } />
+            <Route exact path="/login" component={ Login } />
+            <Route exact path="/forgot-password" component={ ForgotPassword } />
+            <Route path="/" component={ Main } />
           </Switch>
         </AuthProvider>
       </Router>

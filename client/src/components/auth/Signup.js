@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter, FormInlineGroup } from '../Form';
 
 import '../../styles/layouts/auth.css'
+import Alert from '../Alert';
 
 export default function Signup() {
   const firstnameRef = useRef();
@@ -42,13 +43,13 @@ export default function Signup() {
     //   setError("Failed to log in");
     // }
 
-    // setLoading(false);
+    setLoading(false);
   }
 
   return (
     <div className="auth-container">
       <Form title="Sign up to Birdy" onSubmit={handleSubmit}>
-        {error && <label>error</label>}
+        {error && <Alert variant="danger">{error}</Alert>}
         <FormInlineGroup>
           <FormGroup id="firstname" type="text" ref={emailRef} placeholder="Jack" required>Firstname</FormGroup>
           <FormGroup id="lastname" type="text" ref={emailRef} placeholder="Bauer" required>Lastname</FormGroup>

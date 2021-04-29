@@ -2,11 +2,11 @@
   grid-area: nav;
   display: flex;
   justify-content: flex-end;
-  /* padding: 1rem 0; */
 }
 
 .navbar-nav {
-  position: fixed;
+  position: sticky;
+  top: 0px;
   width: 275px;
   height: 100vh;
 
@@ -59,13 +59,4 @@
 
 .nav-link:hover svg, .active svg {
   stroke: var(--clr-primary-400);
-}
-
-.logout-container {
-  width: 90%;
-  margin: 1em 0;
-}
-
-.logout-btn {
-  width: 100%;
 }

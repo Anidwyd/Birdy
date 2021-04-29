@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter } from '../Form';
 
 import '../../styles/layouts/auth.css'
+import Alert from '../Alert';
 
 export default function Signup() {
   const emailRef = useRef();
@@ -31,7 +32,7 @@ export default function Signup() {
   return (
     <div className="auth-container" onSubmit={handleSubmit}>
       <Form title="Log in to Birdy">
-        {error && <label>error</label>}
+        {error && <Alert variant="danger">{error}</Alert>}
         <FormGroup id="email" type="email" ref={emailRef} placeholder="Enter email" required>Email</FormGroup>
         <FormGroup id="password" type="password" ref={passwordRef} placeholder="Enter password" required>
           Password

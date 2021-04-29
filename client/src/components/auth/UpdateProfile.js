@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter } from '../Form';
 
 import '../../styles/layouts/auth.css'
+import Alert from '../Alert';
 
 export default function UpdateProfile() {
   const emailRef = useRef();
@@ -45,7 +46,7 @@ export default function UpdateProfile() {
   return (
     <div className="auth-container">
       <Form title="Update Profile" onSubmit={handleSubmit}>
-        {error && <label>error</label>}
+        {error && <Alert variant="danger">{error}</Alert>}
         <FormGroup
           id="email"
           type="email"

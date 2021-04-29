@@ -1,30 +1,39 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Profile from './Profile';
-import Home from './Home';
+import { Redirect, Route } from 'react-router-dom';
+import Profile from './content/Profile';
+import Home from './content/Home';
+import Content from './Content';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
 import '../../styles/layouts/main.css'
-import Header from './Header';
 
-export default function MainPage({ component }) {
+export default function Main() {
+
+  const [title, setTitle] = useState('Home');
+  const user = {firstname: "Jules", lastname: "Dubreuil"};
+
+  const username = user.firstname + ' ' + user.lastname;
+
+  const redirectHome = () => {
+    return (
+      <Redirect to="/home" />
+    );
+  };
 
   return (
-    <Router>
-      <main>
-        
-        <Header>Header</Header>
+    <main>
 
-        <Navbar />
+      <Navbar setTitle={ setTitle } />
 
-        <div className="content">
-          {component}
-        </div>
+      <Route exact path="/" render={ redirectHome } />
+      <Route path="/home" render={ () => <Content title="Home" component={Home} />} />
+      <Route path="/profile" render={ () => <Content title={username} component={Profile} /> } />
+      <Route path="/bookmarks" render={ () => <Content title="Bookmarks" component={Profile} /> } />
+      <Route path="/messages" render={ () => <Content title="Messages" component={Profile} /> } />
 
-        <Sidebar />
+      <Sidebar />
 
-      </main>
-    </Router>
+    </main>
   );
 }
