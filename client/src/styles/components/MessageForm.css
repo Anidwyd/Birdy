@@ -2,7 +2,7 @@
   padding: 1rem;
 }
 
-.msg-form {
+.new-msg-container form {
   display: flex;
   flex-direction: column;
 }
@@ -16,6 +16,7 @@
   
   color: var(--clr-txt-400);
   font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .msg-form-footer {

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import FriendList from '../friends/FriendList'
 
 import '../../styles/components/Sidebar.css'
+import SearchBar from '../Searchbar';
 
 export default function Sidebar() {
   const [friends, setFriends] = useState([
@@ -21,8 +22,16 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-stack">
+        <div className="search-container">
+          <SearchBar />
+        </div>
         <StackItem>
           <h2 className="stack-title">Friends</h2>
+          <FriendList className="stack-list" friends={friends} />
+          <span className="stack-more">See more</span>
+        </StackItem>
+        <StackItem>
+          <h2 className="stack-title">Suggestions</h2>
           <FriendList className="stack-list" friends={friends} />
           <span className="stack-more">See more</span>
         </StackItem>

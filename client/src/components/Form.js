@@ -20,7 +20,7 @@ export function FormGroup(props) {
         { props.children }
       </label>
       <input
-        className="form-input"
+        className="input"
         type={props.type}
         red={props.ref}
         placeholder={props.placeholder}

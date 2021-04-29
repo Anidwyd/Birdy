@@ -1,17 +1,19 @@
 /* GRID container */
+
 main {
   height: 100%;
   display: grid;
   grid-template-areas:
-    "topbar  topbar   topbar"
-    "nav     content  sidebar";
+    "nav    topbar    sidebar"
+    "nav    content   sidebar";
 
   grid-template-columns: 4fr minmax(auto, 600px) 5fr;
-  grid-template-rows: 3.5rem auto;
+  grid-template-rows: var(--header-size) auto;
 }
 
 /* GRID Items */
-header {
+
+.header {
   grid-area: topbar;
   position: sticky;
   top: 0px;
@@ -22,12 +24,11 @@ header {
 
 .navbar {
   grid-area: nav;
+  border-right: 1px solid var(--clr-border);
 }
 
 .content {
   grid-area: content;
-  border-left: 1px solid var(--clr-border);
-  border-right: 1px solid var(--clr-border);
 }
 
 .home-spacer {
@@ -37,6 +38,7 @@ header {
 
 .sidebar {
   grid-area: sidebar;
+  border-left: 1px solid var(--clr-border);
 }
 
 .profile {
@@ -44,4 +46,15 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 1280px) {
+  .navbar-item span {
+    display: none;
+  }
+  main {
+    grid-template-columns: 3fr minmax(auto, 600px) 2fr;
+  }
 }
