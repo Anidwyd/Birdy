@@ -86,6 +86,20 @@ class Users {
     });
   }
 
+  search(query){
+    return new Promise((resolve, reject) => {
+      const req = this.db.prepare("SELECT firstname, lastname, rowid FROM users WHERE firstname LIKE %?% OR lastname LIKE %?%");
+      req.all([query, query], (err, rows) => {
+        if(err) {
+          console.log('Erreur SQL: ', err);
+          reject();
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
+
 }
 
 exports.default = Users;

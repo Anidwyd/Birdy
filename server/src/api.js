@@ -2,8 +2,9 @@ const express = require("express");
 
 const Users = require("./entities/users.js");
 const Friends = require("./entities/friends.js");
+const Messages = require("./entities/messages.js");
 
-function init(db) {
+function init(db, msgdb) {
 	const router = express.Router();
 	// On utilise JSON
 	router.use(express.json());
@@ -239,10 +240,105 @@ function init(db) {
 		.delete((req, res, next) => {
 			try {
 				if (friends.delete(req.params.user_id, req.params.friendship_id)) {
-					res.status(201).send(`delete friendship ${req.params.user_id}, `)
+					res.status(201).send(`deleted friendship ${req.params.user_id}, `)
 				} else {
 					res.sendStatus(404);
 				}
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		});
+
+
+	/* Messages */	
+
+	const messages = Messages.default(msgdb);
+	router
+		//Création de message
+		.route("messages")
+		.post((req, res) => {
+			try {
+				const { user_id, author_name, content } = req.body;
+				if (messages.add(user_id, author_name, content))
+					res.status(200).send("Post created");
+				else
+					res.sendStatus(403);
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		})
+	router
+		//Récupération des messages d'un utilisateur
+		.route("user/:user_id/messages")
+		.get((req, res) => {
+			try {
+				const message_list = messages.get(req.params.user_id);
+				if(message_list){
+					res.send(message_list)
+				} else {
+					res.sendStatus(404);
+				}
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		});
+	router
+		// Edition de message
+		.route("messages/:message_id")
+		.put((req, res) => {
+			try {
+				const message_id = req.body;
+				const content = req.params.content;
+				if(messages.edit(message_id, content)){
+					res.status(200).send("Post edited")
+				} else {
+					res.sendStatus(404);
+				}
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		})
+		// Suppression de message
+		.delete((req, res, next) => {
+			try {
+				if (messages.delete(req.params.message_id)) {
+					res.status(201).send(`deleted message ${req.params.message_id}, `)
+				} else {
+					res.sendStatus(404);
+				}
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		});
+		// Récupération du feed
+		router.route("feed")
+		.get((req, res) => {
+			try {
+				const feed = messages.getFeed(req.session.user_id, friends);
+				if(feed){
+					res.send(feed)
+				} else {
+					res.send(404)
+				}
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		});
+
+		// Recherche
+		router.route("search/:query")
+		.get((req, res) => {
+			try {
+				const query = req.params.query;
+				let message_results = messages.search(query);
+				let user_results = users.search(query);
+				return {message_results, user_results};
 			}
 			catch (e) {
 				res.status(500).send(e);
