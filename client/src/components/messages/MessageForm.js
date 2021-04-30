@@ -6,7 +6,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import '../../styles/components/MessageForm.css'
 
 export default function MessageForm() {
-  const maxLength = 280;
+  const maxLength = 80;
 
   // TODO: remplacer ca par la liste des messages de la BD
   const messagesRef = useRef();
@@ -44,7 +44,7 @@ export default function MessageForm() {
           minRows={1}
           placeholder="What's up?"/>
         <div className="msg-form-footer">
-          {length < maxLength && 
+          {length < maxLength &&
           <div className="circular-bar-container">
             <CircularProgressbar
               value={maxLength-length}
@@ -53,8 +53,7 @@ export default function MessageForm() {
               styles={buildStyles({
                 pathColor: `${length > 0 ? "var(--clr-primary-400)" : "hsl(345, 83%, 54%)"}`,
                 trailColor: 'var(--clr-bg-500)',
-              })}
-            />
+              })}/>
           </div>}
           <button
             className="btn-primary msg-form-btn"

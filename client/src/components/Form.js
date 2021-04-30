@@ -13,7 +13,7 @@ export default function Form(props) {
   )
 }
 
-export function FormGroup(props) {
+export const FormGroup = React.forwardRef( (props, ref) => {
   return (
     <div className="form-group" id={props.id}>
       <label className="form-label">
@@ -22,17 +22,17 @@ export function FormGroup(props) {
       <input
         className="input"
         type={props.type}
-        red={props.ref}
+        ref={ref}
         placeholder={props.placeholder}
         required={props.required}
         defaultValue={props.defaultValue} />
     </div>
   );
-}
+})
 
 export function FormButton(props) {
   return (
-    <button disable={props.disable} className="btn-primary form-button" onClick={props.onClick}>
+    <button disable={props.disable} className="btn-primary form-button" onClick={props.onClick} type="submit">
       { props.children }
     </button>
   );

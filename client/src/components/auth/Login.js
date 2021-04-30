@@ -7,10 +7,10 @@ import '../../styles/layouts/auth.css'
 import Alert from '../Alert';
 
 export default function Signup() {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const emailRef = useRef();
+  const passwordRef = useRef();
   
-  const { login } = useAuth(null);
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -18,10 +18,12 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    console.log(emailRef.current.value)
+
     try {
       setError("");
       setLoading(true);
-      await login(/*emailRef.current.value, passwordRef.current.value*/);
+      await login(emailRef.current.value, passwordRef.current.value);
       history.push("/")
     } catch {
       setError("Failed to log in");
@@ -31,8 +33,8 @@ export default function Signup() {
   }
 
   return (
-    <div className="auth-container" onSubmit={handleSubmit}>
-      <Form title="Log in to Birdy">
+    <div className="auth-container">
+      <Form title="Log in to Birdy" onSubmit={handleSubmit}>
         {error && <Alert variant="danger">{error}</Alert>}
         <FormGroup id="email" type="email" ref={emailRef} placeholder="Enter email" required>Email</FormGroup>
         <FormGroup id="password" type="password" ref={passwordRef} placeholder="Enter password" required>
