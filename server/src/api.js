@@ -253,7 +253,7 @@ function init(db, msgdb) {
 
 	/* Messages */	
 
-	const messages = Messages.default(msgdb);
+	const messages = new Messages.default(msgdb);
 	router
 		//Création de message
 		.route("messages")

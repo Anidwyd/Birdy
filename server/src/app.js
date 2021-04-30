@@ -13,7 +13,7 @@ var Datastore = require('nedb')
 var msgdb = {};
 msgdb.messages = new Datastore();
 msgdb.messages.loadDatabase();
-msgdb.messages.createIndex({author_name: "text", content: "text"})
+//msgdb.messages.createIndex({author_name: "text", content: "text"})
 
 express = require('express');
 const app = express()
