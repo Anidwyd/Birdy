@@ -4,14 +4,25 @@
   justify-content: center;
 
   font-size: 0.95rem;
-  transition: filter 300ms;
+  font-weight: 500;
   gap: .75rem;
   transition: var(--speed) ease-in;
 }
 .reaction-btn svg {
   width: 1.25rem;
   height: 1.25rem;
+  stroke-width: 1.5px;
   transition: var(--speed) ease-in;
+}
+
+.primary-reaction, .comment-reaction  {
+  --reaction-color: var(--clr-primary-400);
+}
+.like-reaction {
+  --reaction-color: hsl(345, 83%, 54%);;
+}
+.bookmark-reaction {
+  --reaction-color: hsl(202, 89%, 47%);;
 }
 
 .reaction-btn:not(.toggled) {
@@ -21,16 +32,16 @@
   stroke: var(--clr-txt-500);
 }
 
-.reaction-btn:not(.toggled):hover {
-  color: var(--clr-primary-400);
+.reaction-btn:not(.toggled):hover,
+.reaction-btn.toggled {
+  color: var(--reaction-color);
 }
-.reaction-btn:not(.toggled):hover svg {
-  stroke: var(--clr-primary-400);
+.reaction-btn:not(.toggled):hover svg,
+.reaction-btn.toggled svg {
+  stroke: var(--reaction-color);
+  stroke-width: 2.5px;
 }
 
-.reaction-btn.toggled {
-  color: var(--clr-primary-400);
-}
-.reaction-btn.toggled svg {
-  stroke: var(--clr-primary-400);
-}
+/* .reaction-btn.toggled svg {
+  fill: var(--reaction-color);
+} */
