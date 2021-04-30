@@ -3,9 +3,11 @@ import { useAuth } from '../../contexts/AuthContext';
 import Form, { FormGroup, FormButton, FormRouter } from '../Form';
 
 import '../../styles/layouts/auth.css'
+import Alert from '../Alert';
 
 export default function ForgotPassword() {
   const emailRef = useRef();
+  
   const { resetPassword } = useAuth();
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -18,7 +20,7 @@ export default function ForgotPassword() {
       setMessage('')
       setError('');
       setLoading(true);
-      await resetPassword(emailRef.current.value);
+      await resetPassword(/*emailRef.current.value*/);
       setMessage('Check your inbox for further instructions!')
     } catch {
       setError('Failed to reset password');
@@ -30,8 +32,8 @@ export default function ForgotPassword() {
   return (
     <div className="auth-container" onSubmit={handleSubmit}>
       <Form title="Password Reset">
-        {error && <label>error</label>}
-        {message && <label>message</label>}
+        {error && <Alert variant="danger">{error}</Alert>}
+        {message && <Alert variant="success">{message}</Alert>}
         <FormGroup id="email" type="email" ref={emailRef} placeholder="Enter email" required>Email</FormGroup>
         <FormButton disabled={loading}>Reset password</FormButton>
         <FormRouter value="Remembered just now? " to="/login">Log in</FormRouter>

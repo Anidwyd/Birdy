@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import MessageForm from '../messages/MessageForm';
-import MessageList from '../messages/MessageList';
+import MessageForm from '../../messages/MessageForm';
+import MessageList from '../../messages/MessageList';
 
 export default function Home() {
   const [messages, setMessages] = useState([

@@ -2,11 +2,11 @@
   grid-area: nav;
   display: flex;
   justify-content: flex-end;
-  /* padding: 1rem 0; */
 }
 
 .navbar-nav {
-  position: fixed;
+  position: sticky;
+  top: 0px;
   width: 275px;
   height: 100vh;
 
@@ -17,11 +17,6 @@
 
 .nav-item:last-child {
   margin-top: auto;
-}
-
-.logo svg {
-  width: 2rem !important;
-  height: 2rem !important;
 }
 
 .nav-link {
@@ -61,11 +56,13 @@
   stroke: var(--clr-primary-400);
 }
 
-.logout-container {
-  width: 90%;
-  margin: 1em 0;
+/* gestion du logo */
+
+.logo {
+  padding: .5rem !important;
 }
 
-.logout-btn {
-  width: 100%;
+.logo svg {
+  width: 2rem !important;
+  height: 2rem !important;
 }

@@ -1,12 +1,11 @@
 import React from 'react'
-import SearchBar from '../Searchbar'
 
 import '../../styles/components/Header.css'
 
-export default function Header() {
+export default function Header({ title }) {
   return (
-    <header class="header">
-      <h2>Home</h2>
+    <header className="header">
+      <h2>{title}</h2>
     </header>
   )
 }
