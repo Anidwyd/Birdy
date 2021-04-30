@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import axios from '../axios'
 
 const AuthContext = React.createContext();
 
@@ -15,7 +16,12 @@ export function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    // Login user with promise
+    return axios.post('api/user', {
+        email: email,
+        password: password
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   }
 
   function logout() {
@@ -35,12 +41,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    // const unsubscribe = axios.get(user => {
-    //   setCurrentUser(user);
-      setLoading(false);
-    // })
-    
-    // return unsubscribe;
+    setLoading(false);
   }, [])
 
   const value = {

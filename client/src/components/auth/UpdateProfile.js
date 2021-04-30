@@ -57,7 +57,7 @@ export default function UpdateProfile() {
             Email
           </FormGroup>
         <FormGroup id="password" type="password" ref={passwordRef} placeholder="Enter new password">Password</FormGroup>
-        <FormGroup id="password" type="password" ref={passwordConfirmRef} placeholder="Repeat new password">Confirm password</FormGroup>
+        <FormGroup id="password-confirm" type="password" ref={passwordConfirmRef} placeholder="Repeat new password">Confirm password</FormGroup>
         <FormButton disabled={loading}>Update</FormButton>
         <FormRouter value="Nah, I'm good actually! " to="/">Cancel</FormRouter>
       </Form>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import Profile from './content/Profile';
 import Home from './content/Home';
@@ -10,7 +10,6 @@ import '../../styles/layouts/main.css'
 
 export default function Main() {
 
-  const [title, setTitle] = useState('Home');
   const user = {firstname: "Jules", lastname: "Dubreuil"};
 
   const username = user.firstname + ' ' + user.lastname;
@@ -24,7 +23,7 @@ export default function Main() {
   return (
     <main>
 
-      <Navbar setTitle={ setTitle } />
+      <Navbar />
 
       <Route exact path="/" render={ redirectHome } />
       <Route path="/home" render={ () => <Content title="Home" component={Home} />} />

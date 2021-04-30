@@ -7,9 +7,10 @@ import '../../styles/layouts/auth.css'
 import Alert from '../Alert';
 
 export default function Signup() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const { login } = useAuth();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  
+  const { login } = useAuth(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -17,16 +18,16 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // try {
-    //   setError("");
-    //   setLoading(true);
-    //   await login(emailRef.current.value, passwordRef.current.value);
+    try {
+      setError("");
+      setLoading(true);
+      await login(/*emailRef.current.value, passwordRef.current.value*/);
       history.push("/")
-    // } catch {
-    //   setError("Failed to log in");
-    // }
+    } catch {
+      setError("Failed to log in");
+    }
 
-    // setLoading(false);
+    setLoading(false);
   }
 
   return (

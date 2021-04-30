@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-import { ReactComponent as Logo } from '../../icons/logo.svg'
-import { ReactComponent as HomeIcon } from '../../icons/home.svg'
-import { ReactComponent as ProfileIcon } from '../../icons/profile.svg'
 import { ReactComponent as BookmarkIcon } from '../../icons/bookmark.svg'
 import { ReactComponent as ContactsIcon } from '../../icons/contacts.svg'
+import { ReactComponent as HomeIcon } from '../../icons/home.svg'
+import { ReactComponent as Logo } from '../../icons/logo.svg'
 import { ReactComponent as MessageIcon } from '../../icons/message.svg'
+import { ReactComponent as ProfileIcon } from '../../icons/profile.svg'
 
 import '../../styles/components/Navbar.css'
 import Logout from '../auth/Logout'
+
+
 
 export default function Navbar() {
   function NavItem({ icon, name, to}) {

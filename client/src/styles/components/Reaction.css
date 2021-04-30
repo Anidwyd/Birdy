@@ -19,10 +19,10 @@
   --reaction-color: var(--clr-primary-400);
 }
 .like-reaction {
-  --reaction-color: hsl(345, 83%, 54%);;
+  --reaction-color: hsl(345, 83%, 54%);
 }
 .bookmark-reaction {
-  --reaction-color: hsl(202, 89%, 47%);;
+  --reaction-color: hsl(202, 89%, 47%);
 }
 
 .reaction-btn:not(.toggled) {

@@ -22,9 +22,16 @@
 .msg-form-footer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: .75rem;
   margin-top: .75rem;
 }
 
 .msg-form-btn {
   padding: 1em 1.875em !important;
+}
+
+.circular-bar-container {
+  width: 1.5rem;
+  height: 1.5rem;
 }

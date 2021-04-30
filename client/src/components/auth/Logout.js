@@ -13,15 +13,15 @@ export default function Logout() {
   const { currentUser, logout } = useAuth();
   const history = useHistory();
 
-  function handleLogout() {
+  async function handleLogout() {
     setError('');
 
-    // try {
-      /*await*/ logout();
+    try {
+      await logout();
       history.push('/login')
-    // } catch {
-    //   setError('Failed to log out.');
-    // }
+    } catch {
+      setError('Failed to log out.');
+    }
   }
 
   return (

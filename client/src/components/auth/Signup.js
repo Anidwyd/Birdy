@@ -7,12 +7,12 @@ import '../../styles/layouts/auth.css'
 import Alert from '../Alert';
 
 export default function Signup() {
-  const firstnameRef = useRef();
-  const lastnameRef = useRef();
-  const usernameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
+  const firstnameRef = useRef(null);
+  const lastnameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const passwordConfirmRef = useRef(null);
+  
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,27 +21,27 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    // if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-    //   return setError("Passwords do not match")
-    // }
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match")
+    }
 
     history.push("/");
 
-    // try {
-    //   setError("");
-    //   setLoading(true);
+    try {
+      setError("");
+      setLoading(true);
 
-    //   await signup(
-    //     firstnameRef.current.value,
-    //     lastnameRef.current.value,
-    //     emailRef.current.value,
-    //     passwordRef.current.value
-    //   );
+      await signup(
+        firstnameRef.current.value,
+        lastnameRef.current.value,
+        emailRef.current.value,
+        passwordRef.current.value
+      );
 
-    //   history.push("/")
-    // } catch {
-    //   setError("Failed to log in");
-    // }
+      history.push("/")
+    } catch {
+      setError("Failed to log in");
+    }
 
     setLoading(false);
   }
@@ -51,14 +51,13 @@ export default function Signup() {
       <Form title="Sign up to Birdy" onSubmit={handleSubmit}>
         {error && <Alert variant="danger">{error}</Alert>}
         <FormInlineGroup>
-          <FormGroup id="firstname" type="text" ref={emailRef} placeholder="Jack" required>Firstname</FormGroup>
-          <FormGroup id="lastname" type="text" ref={emailRef} placeholder="Bauer" required>Lastname</FormGroup>
+          <FormGroup id="firstname" type="text" ref={firstnameRef} placeholder="Jack" required>Firstname</FormGroup>
+          <FormGroup id="lastname" type="text" ref={lastnameRef} placeholder="Bauer" required>Lastname</FormGroup>
         </FormInlineGroup>
-        <FormGroup id="username" type="text" ref={usernameRef} placeholder="Enter username (the @ thing !)" required>Username</FormGroup>
         <FormGroup id="email" type="email" ref={emailRef} placeholder="Enter email" required>Email</FormGroup>
         <FormGroup id="password" type="password" ref={passwordRef} placeholder="Enter password" required>Password</FormGroup>
-        <FormGroup id="password" type="password" ref={passwordConfirmRef} placeholder="Repeat password" required>Confirm password</FormGroup>
-        <FormButton disabled={loading} onClick={() => {}}>Sign Up</FormButton>
+        <FormGroup id="password-confirm" type="password" ref={passwordConfirmRef} placeholder="Repeat password" required>Confirm password</FormGroup>
+        <FormButton disabled={loading}>Sign Up</FormButton>
         <FormRouter value="Already have an account? " to="/login">Log In</FormRouter>
       </Form>
     </div>
