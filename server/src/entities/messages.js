@@ -1,3 +1,4 @@
+
 class Messages{
     constructor(db){
         this.db = db;
