@@ -23,7 +23,17 @@
         })
         
     }
-
+    getAll(){
+        return new Promise((resolve, reject) => {
+            this.db.messages.find({}, (err, docs) =>{
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            })
+        })
+    }
     get(user_id){
         return new Promise((resolve, reject) => {
             this.db.messages.find({user_id: user_id}, (err, docs) =>{

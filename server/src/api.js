@@ -269,6 +269,19 @@ function init(db, msgdb) {
 				res.status(500).send(e);
 			}
 		})
+		.get((req, res) => {
+			try {
+				const message_list = messages.getAll();
+				if(message_list){
+					res.send(message_list)
+				} else {
+					res.sendStatus(404);
+				}
+			}
+			catch (e) {
+				res.status(500).send(e);
+			}
+		});
 	router
 		//Récupération des messages d'un utilisateur
 		.route("user/:user_id/messages")
