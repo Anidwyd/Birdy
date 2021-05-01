@@ -1,15 +1,14 @@
 import React, { useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useAuth } from '../../contexts/AuthContext';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import CharacterLimiter from '../CharacterLimiter'
 
 import '../../styles/components/MessageForm.css'
 
-export default function MessageForm() {
-  const maxLength = 280;
+export default function MessageForm({ addMessage }) {
+  const maxLength = 144;
 
   // TODO: remplacer ca par la liste des messages de la BD
-  const messagesRef = useRef();
   const [formValue, setFormValue] = useState('');
   const [length, setLength] = useState(maxLength);
   const { currentUser } = useAuth();
@@ -22,16 +21,18 @@ export default function MessageForm() {
 
   const sendMessage = async(e) => {
     e.preventDefault();
-    /*
-    const { uid } = currentUser;
 
-    // blabla
-    await messagesRef.add({
-      text: formValue,
-      createdAt: uid // plus le temps jimagine
-    });*/
+    const data = {
+      author: 'Harold',
+      content: formValue,
+      timestamp: '8s',
+      comments: '12',
+      likes: '8'
+    }
 
+    addMessage(data)
     setFormValue('');
+    setLength(maxLength);
   }
 
   return (
@@ -44,23 +45,12 @@ export default function MessageForm() {
           minRows={1}
           placeholder="What's up?"/>
         <div className="msg-form-footer">
-          {length < maxLength && 
-          <div className="circular-bar-container">
-            <CircularProgressbar
-              value={maxLength-length}
-              maxValue={maxLength}
-              strokeWidth={10}
-              styles={buildStyles({
-                pathColor: `${length > 0 ? "var(--clr-primary-400)" : "hsl(345, 83%, 54%)"}`,
-                trailColor: 'var(--clr-bg-500)',
-              })}
-            />
-          </div>}
+          {length < maxLength && <CharacterLimiter value={length} maxValue={maxLength} />}
           <button
             className="btn-primary msg-form-btn"
             disabled={!(formValue.replace(/(\r\n|\n|\r)/gm, "")) || length < 0}>
               Tweet
-            </button>
+          </button>
         </div>
       </form>
     </div>

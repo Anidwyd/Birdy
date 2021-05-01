@@ -1,5 +1,5 @@
 
- class Messages{
+class Messages{
     constructor(db){
         this.db = db;
     }
@@ -119,4 +119,5 @@
         }) 
     }
 }
+
 exports.default = Messages;

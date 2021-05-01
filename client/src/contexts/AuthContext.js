@@ -9,27 +9,31 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
+  const [state, setState] = useState('')
   const [loading, setLoading] = useState(true)
 
-  function signup(firstname, surname, email, password) {
-    // Register user with promise
+  function signup(firstname, lastname, email, password) {
+    return axios.post("api/user", {
+        login: email,
+        password: password,
+        firstname: firstname,
+        lastname: lastname
+      })
   }
 
   function login(email, password) {
-    return axios.post('api/user', {
-        email: email,
+    return axios.post("api/authentification", {
+        login: email,
         password: password
       })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
   }
 
   function logout() {
-    // Sign out with promise
+    return axios.delete("api/authentification")
   }
 
   function resetPassword(email) {
-    //
+    // 
   }
 
   function updateEmail(email) {
@@ -41,8 +45,13 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    setLoading(false);
-  }, [])
+    // const unsubsribe = (user) => {
+    setCurrentUser({});
+    setLoading(false)
+    // }
+    
+    // return unsubsribe
+  }, []);
 
   const value = {
     currentUser,
@@ -56,7 +65,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={value}>
-      { children }
+      { !loading && children }
     </AuthContext.Provider>
   );
 }

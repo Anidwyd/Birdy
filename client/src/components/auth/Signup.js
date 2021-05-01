@@ -27,21 +27,31 @@ export default function Signup() {
 
     history.push("/");
 
-    try {
-      setError("");
-      setLoading(true);
+    // try {
+    setError("");
+    setLoading(true);
 
-      await signup(
+    signup(
         firstnameRef.current.value,
         lastnameRef.current.value,
         emailRef.current.value,
         passwordRef.current.value
-      );
+      )
+      .then((res) => {
+        // if (res.data['status'] === 200) {
+        //   setState({status: '200'})
+        // } else {
+        //   setState({status: 'error', desc: res.data['desc']})
+        //   throw 'error'
+        // }
+        // history.push("/")
+        console.log('Response: ', res)
+      })
+      .catch((err) => console.log('Error: ', err));
 
-      history.push("/")
-    } catch {
-      setError("Failed to log in");
-    }
+    // } catch {
+    //   setError("Failed to log in");
+    // }
 
     setLoading(false);
   }
