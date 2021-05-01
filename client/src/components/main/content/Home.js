@@ -16,17 +16,17 @@ export default function Home() {
   const getMessages = async () => {
     const response = await axios
       .get("api/messages")
-      .catch((err) => console.log("Error friends:", err));
+      .catch((err) => console.log("Error:", err));
 
     if (response && response.data) setMessages(response.data);
   }
 
   const addMessage = async (data) => {
-    // const response = await axios
-    //   .post("/messages", data)
-    //   .catch((err) => { console.log("Error: ", err)});
+    const response = await axios
+      .post("api/messages", data)
+      .catch((err) => { console.log("Error: ", err)});
 
-    // if (response)
+    if (response)
     setMessages([data, ...messages])
     console.log(messages)
   }

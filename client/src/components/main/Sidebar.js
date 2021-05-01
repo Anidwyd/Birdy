@@ -27,7 +27,7 @@ export default function Sidebar() {
       .get("api/user/1")
       .catch((err) => console.log("Error:", err));
 
-    if (response && response.data) setFriends(response.data);
+    if (response && response.data) setFriends([response.data]);
   }
 
   useEffect(() => {

@@ -23,11 +23,9 @@ export default function MessageForm({ addMessage }) {
     e.preventDefault();
 
     const data = {
-      author: 'Harold',
+      user_id: 2,
+      author_name: 'Harold',
       content: formValue,
-      timestamp: '8s',
-      comments: '12',
-      likes: '8'
     }
 
     addMessage(data)
