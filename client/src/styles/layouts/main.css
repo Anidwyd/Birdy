@@ -57,7 +57,8 @@ main {
     display: none;
   }
   .navbar-nav {
-    width: 73px;
+    width: auto;
+    margin: 0 .5em;
   }
   .nav-item-name {
     display: none;

@@ -13,41 +13,23 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   function signup(firstname, lastname, email, password) {
-    return axios.post('api/user', {
+    return axios.post("api/user", {
         login: email,
         password: password,
         firstname: firstname,
         lastname: lastname
       })
-      .then((res) => {
-        if (res.data['status'] === 200) {
-          setState({status: '200'})
-        } else {
-          setState({status: 'error', desc: res.data['desc']})
-        }
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
   }
 
   function login(email, password) {
-    return axios.post('api/authentification', {
+    return axios.post("api/authentification", {
         login: email,
         password: password
       })
-      .then((res) => {
-        if (res.data['status'] === 200) {
-          setState({status: '200'})
-        } else {
-          setState({status: 'error', desc: res.data['desc']})
-        }
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
   }
 
   function logout() {
-    return axios.delete('api/authentification')
+    return axios.delete("api/authentification")
   }
 
   function resetPassword(email) {
@@ -63,12 +45,12 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubsribe = (user) => {
-      setCurrentUser(user);
-      setLoading(false)
-    }
+    // const unsubsribe = (user) => {
+    setCurrentUser({});
+    setLoading(false)
+    // }
     
-    return unsubsribe
+    // return unsubsribe
   }, []);
 
   const value = {

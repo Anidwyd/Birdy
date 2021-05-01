@@ -23,7 +23,18 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+
+      await login(emailRef.current.value, passwordRef.current.value)
+        // .then((res) => {
+        //   if (res.data['status'] === 200) {
+        //     setState({status: '200'})
+        //   } else {
+        //     setState({status: 'error', desc: res.data['desc']})
+        //   }
+        //   console.log(res)
+        // })
+        // .catch((err) => console.log(err))
+
       history.push("/")
     } catch {
       setError("Failed to log in");

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FriendList from '../friends/FriendList'
 
 import '../../styles/components/Sidebar.css'
 import SearchBar from '../Searchbar';
+import axios from '../../axios';
 
 export default function Sidebar() {
   const [friends, setFriends] = useState([
@@ -18,6 +19,21 @@ export default function Sidebar() {
       </div>
     )
   }
+
+  const noFriends = !friends || (friends && friends.length === 0)
+
+  const getFriends = async () => {
+    const response = await axios
+      .get("api/user/1")
+      .catch((err) => console.log("Error:", err));
+
+    if (response && response.data) setFriends(response.data);
+  }
+
+  useEffect(() => {
+    getFriends();
+    console.log(friends)
+  }, [])
 
   return (
     <aside className="sidebar">

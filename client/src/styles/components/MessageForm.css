@@ -23,7 +23,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: .75rem;
   margin-top: .75rem;
 }
 
@@ -31,7 +30,23 @@
   padding: 1em 1.875em !important;
 }
 
-.circular-bar-container {
-  width: 1.5rem;
-  height: 1.5rem;
+.limiter {
+  transition: 150ms ease-out;
+}
+
+.safe {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 1rem;
+}
+
+.exceeded {
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-right: 0.6875rem;
+}
+
+.limiter-inside-text {
+  font-size: .675rem;
+  margin-top: -.625rem;
 }

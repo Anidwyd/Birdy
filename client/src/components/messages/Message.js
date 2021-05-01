@@ -14,9 +14,7 @@ export default function Message({ index, author, content, timestamp, comments, l
         <span className="msg-author">{author}</span>
         <span className="msg-timestamp">{timestamp}</span>
       </div>
-      <div className="msg-body">
-        <span className="msg-content">{content}</span>
-      </div>
+      <div className="msg-body">{content}</div>
       <footer className="msg-footer">
         <Reaction icon={<CommentIcon />} >{ comments }</Reaction>
         <Reaction icon={<LikeIcon />} variant="like" >{ likes }</Reaction>

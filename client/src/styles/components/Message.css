@@ -16,6 +16,10 @@
   font-weight: 500;
 }
 
+.msg-body {
+  white-space: pre-wrap;
+}
+
 .msg-footer {
   margin-left: auto;
   margin-right: auto;
