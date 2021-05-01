@@ -25,7 +25,7 @@ export default function MessageForm({ addMessage }) {
     const data = {
       user_id: 2,
       author_name: 'Harold',
-      content: formValue,
+      content: formValue
     }
 
     addMessage(data)

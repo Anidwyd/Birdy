@@ -4,7 +4,7 @@ const Users = require("./entities/users.js");
 const Friends = require("./entities/friends.js");
 const Messages = require("./entities/messages.js");
 
-function init(db, msgdb) {
+function init(db, mongodb) {
 	const router = express.Router();
 	// On utilise JSON
 	router.use(express.json());
@@ -45,7 +45,7 @@ function init(db, msgdb) {
 
 				if (user_id) {
 					// Avec middleware express-session
-					req.session.regenerate(function (err) {
+					req.session.regenerate(async function (err) {
 						if (err) {
 							res.status(500).json({
 								status: 500,
@@ -55,8 +55,10 @@ function init(db, msgdb) {
 						else {
 							// C'est bon, nouvelle session créée
 							req.session.user_id = user_id;
+							const user = await users.get(user_id);
 							res.status(200).json({
 								status: 200,
+								user: user,
 								message: "Login and password accepted"
 							});
 						}
@@ -159,6 +161,7 @@ function init(db, msgdb) {
 
 	router
 		.route("/user/:user_id/friends")
+
 		// Création d'une amitié
 		.post(async (req, res) => {
 			try {
@@ -180,6 +183,7 @@ function init(db, msgdb) {
 							message: "One of the users doesn't exist"
 						});
 					}
+
 					if (await friends.exists(user_id, friend_id)) {
 						res.status(410).json({
 							status: 410,
@@ -199,6 +203,7 @@ function init(db, msgdb) {
 				res.status(500).send(e);
 			}
 		})
+
 		// Récupération de tous les amis
 		.get((req, res) => {
 			try {
@@ -222,7 +227,8 @@ function init(db, msgdb) {
 		});
 
 	router
-		.route("user/:user_id/friends/:friendship_id")
+		.route("/user/:user_id/friends/:friendship_id")
+
 		// Récupération d'un ami
 		.get(async (req, res) => {
 			try {
@@ -236,6 +242,7 @@ function init(db, msgdb) {
 				res.status(500).send(e);
 			}
 		})
+
 		// Suppression d'un ami
 		.delete((req, res, next) => {
 			try {
@@ -253,42 +260,45 @@ function init(db, msgdb) {
 
 	/* Messages */	
 
-	const messages = new Messages.default(msgdb);
+	const messages = new Messages.default(mongodb);
+
 	router
-		//Création de message
-		.route("messages")
-		.post((req, res) => {
-			try {
-				const { user_id, author_name, content } = req.body;
-				if (messages.add(user_id, author_name, content))
-					res.status(200).send("Post created");
-				else
-					res.sendStatus(403);
+		.route("/messages")
+		// Création d'un message
+		.post(async (req, res) => {
+			const message = {
+				user_id: req.body.user_id,
+				author_name: req.body.author_name,
+				date: new Date(),
+				content: req.body.content,
+				likers: []
 			}
-			catch (e) {
-				res.status(500).send(e);
+			try {
+				const newMessage = mongodb.messages.insert(message)
+				res.json(newMessage)
+			}
+			catch (err) {
+				res.status(500).json(err)
 			}
 		})
+
+		// Récupération de la liste de messages
 		.get((req, res) => {
-			try {
-				const message_list = messages.getAll();
-				if(message_list){
-					res.send(message_list)
-				} else {
-					res.sendStatus(404);
-				}
-			}
-			catch (e) {
-				res.status(500).send(e);
-			}
+			return new Promise( (resolve, reject) => {
+        mongodb.messages.find( {}, (err, docs) => {
+            if (err) reject(res.status(500).json(err.message));
+            else resolve(res.json(docs.sort(messages.GetSortOrder("date"))));
+					});
+			});
 		});
+
 	router
-		//Récupération des messages d'un utilisateur
-		.route("user/:user_id/messages")
+		// Récupération des messages d'un utilisateur
+		.route("/user/:user_id/messages")
 		.get((req, res) => {
 			try {
 				const message_list = messages.get(req.params.user_id);
-				if(message_list){
+				if (message_list){
 					res.send(message_list)
 				} else {
 					res.sendStatus(404);
@@ -298,9 +308,10 @@ function init(db, msgdb) {
 				res.status(500).send(e);
 			}
 		});
+
 	router
+		.route("/messages/:message_id")
 		// Edition de message
-		.route("messages/:message_id")
 		.put((req, res) => {
 			try {
 				const message_id = req.body;
@@ -342,12 +353,14 @@ function init(db, msgdb) {
 				res.status(500).send(e);
 			}
 		});
+
+	router.route("/feed")
 		// Récupération du feed
-		router.route("feed")
 		.get((req, res) => {
 			try {
 				const feed = messages.getFeed(req.session.user_id, friends);
-				if(feed){
+				
+				if (feed) {
 					res.send(feed)
 				} else {
 					res.send(404)
@@ -358,8 +371,9 @@ function init(db, msgdb) {
 			}
 		});
 
+	router
+		.route("/search/:query")
 		// Recherche
-		router.route("search/:query")
 		.get((req, res) => {
 			try {
 				const query = req.params.query;
@@ -374,4 +388,5 @@ function init(db, msgdb) {
 
 	return router;
 }
+
 exports.default = init;

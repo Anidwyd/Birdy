@@ -9,23 +9,22 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
-  const [state, setState] = useState('')
   const [loading, setLoading] = useState(true)
 
   function signup(firstname, lastname, email, password) {
-    return axios.post("api/user", {
-        login: email,
-        password: password,
-        firstname: firstname,
-        lastname: lastname
-      })
+    const user = {
+      login: email,
+      password: password,
+      firstname: firstname,
+      lastname: lastname
+    }
+
+    return axios.post("api/user", user)
   }
 
   function login(email, password) {
-    return axios.post("api/authentification", {
-        login: email,
-        password: password
-      })
+
+    return axios.post("api/authentification", { login: email, password: password })
   }
 
   function logout() {

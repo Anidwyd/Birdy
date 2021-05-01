@@ -13,7 +13,7 @@ export default function Signup() {
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
   
-  const { signup } = useAuth();
+  const { signup, login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -27,31 +27,25 @@ export default function Signup() {
 
     history.push("/");
 
-    // try {
     setError("");
     setLoading(true);
 
-    signup(
-        firstnameRef.current.value,
-        lastnameRef.current.value,
-        emailRef.current.value,
-        passwordRef.current.value
-      )
-      .then((res) => {
-        // if (res.data['status'] === 200) {
-        //   setState({status: '200'})
-        // } else {
-        //   setState({status: 'error', desc: res.data['desc']})
-        //   throw 'error'
-        // }
-        // history.push("/")
-        console.log('Response: ', res)
+    signup(firstnameRef.current.value, lastnameRef.current.value, emailRef.current.value, passwordRef.current.value)
+      .then(() => {
+        login(emailRef.current.value, passwordRef.current.value)
+          .then((res) => {
+            history.push("/")
+            console.log(res)
+          })
+          .catch((err) => {
+            setError("Failed to log in");
+            console.log(err)
+          });
       })
-      .catch((err) => console.log('Error: ', err));
-
-    // } catch {
-    //   setError("Failed to log in");
-    // }
+      .catch((err) => {
+        setError("Failed to sign up");
+        console.log(err)
+      });
 
     setLoading(false);
   }

@@ -20,25 +20,18 @@ export default function Signup() {
 
     console.log(emailRef.current.value)
 
-    try {
-      setError("");
-      setLoading(true);
+    setError("");
+    setLoading(true);
 
-      await login(emailRef.current.value, passwordRef.current.value)
-        // .then((res) => {
-        //   if (res.data['status'] === 200) {
-        //     setState({status: '200'})
-        //   } else {
-        //     setState({status: 'error', desc: res.data['desc']})
-        //   }
-        //   console.log(res)
-        // })
-        // .catch((err) => console.log(err))
-
-      history.push("/")
-    } catch {
-      setError("Failed to log in");
-    }
+    await login(emailRef.current.value, passwordRef.current.value)
+      .then((res) => {
+        history.push("/")
+        console.log(res)
+      })
+      .catch((err) => {
+        setError("Failed to log in");
+        console.log(err)
+      });
 
     setLoading(false);
   }

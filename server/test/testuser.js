@@ -1,6 +1,6 @@
 const chaiHttp = require('chai-http');
 const chai = require('chai');
-const app = require('../src/app.js'); // c'est l'app "express"
+const app = require('../src/server.js/index.js'); // c'est l'app "express"
 //import { describe, it } from 'mocha'
 const mocha = require('mocha');
 

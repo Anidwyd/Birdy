@@ -4,7 +4,7 @@ import '../../styles/components/Header.css'
 
 export default function Header({ title }) {
   return (
-    <header className="header">
+    <header className="header noselect">
       <h2>{title}</h2>
     </header>
   )
