@@ -31,7 +31,7 @@ main {
   grid-area: content;
 }
 
-.home-spacer {
+.spacer {
   height: .5rem;
   background-color: var(--clr-border);
 }

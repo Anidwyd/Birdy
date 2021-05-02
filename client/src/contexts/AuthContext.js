@@ -19,21 +19,7 @@ export function AuthProvider({ children }) {
       lastname: lastname
     }
 
-    const response = axios.post("user", user)
-      .then((res) => {
-        if (res.data["status"] === "201") {
-          setCurrentUser({
-            user_id: res.data["user_id"],
-            email: email,
-            password: password,
-            firstname: firstname,
-            lastname: lastname,
-          })
-        }
-      })
-      .catch((err) => console.log(err));
-
-      return response;
+    return axios.post("user", user)
   }
 
   async function login(email, password) {
@@ -41,30 +27,14 @@ export function AuthProvider({ children }) {
         login: email,
         password: password
       })
-      .then((res) => {
-        const user_id = res.data["user_id"]
-        setCurrentUser({
-          user_id: res.data["user"],
-          email: user["login"],
-          password: user["password"],
-          firstname: user["firstname"],
-          lastname: user["lastname"]
-        })
-      })
-      .catch((err) => console.log(err));
 
-    return response;
+    await setUser()
+
+    return response
   }
 
-  async function logout() {
-    const response = await axios.delete("user/login")
-      .then((res) => {
-        setCurrentUser({})
-        console.log(currentUser);
-      })
-      .catch((err) => console.log(err));
-
-    return response;
+  function logout() {
+    return axios.delete("user/logout")
   }
 
   function resetPassword(email) {
@@ -79,13 +49,48 @@ export function AuthProvider({ children }) {
     // 
   }
 
+  async function setUser() {
+    const response = await axios.get("user/login");
+
+    if (response && response.data && response.data["status"] === "200") {
+      const user_id = response.data["user_id"]
+      const user = response.data["user"]
+
+      setCurrentUser({
+        user_id: user_id,
+        email: user["login"],
+        password: user["password"],
+        username: user["firstname"] + ' ' + user["lastname"]
+      })
+    } else {
+      setCurrentUser({
+        user_id: 1,
+        email: "jules@mail.com",
+        password: "password",
+        username: "Jules Dubreuil"
+      })
+    }
+
+    console.log(response);
+
+    return currentUser;
+  }
+
   useEffect(() => {
-    // TODO: unsubscribe all
+    // const unsubscribe = axios.get("user/login")
+    //   .then((res) => {
+    //     console.log("response:", res.data)
     setLoading(false)
+    //   })
+    //   .catch((err) => console.log(err))
+
+    // return unsubscribe
+
   }, []);
 
   const value = {
     currentUser,
+    setUser,
     signup,
     login,
     logout,

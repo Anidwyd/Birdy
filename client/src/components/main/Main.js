@@ -6,13 +6,15 @@ import Content from './Content';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
+import { useAuth } from '../../contexts/AuthContext';
 import '../../styles/layouts/main.css'
+import Notifications from './content/Notifications';
+import Bookmarks from './content/Bookmarks';
+import Messages from './content/Messages';
 
 export default function Main() {
-
-  const user = {firstname: "Jules", lastname: "Dubreuil"};
-
-  const username = user.firstname + ' ' + user.lastname;
+  
+  const { currentUser } = useAuth();
 
   const redirectHome = () => {
     return (
@@ -27,9 +29,10 @@ export default function Main() {
 
       <Route exact path="/" render={ redirectHome } />
       <Route path="/home" render={ () => <Content title="Home" component={Home} />} />
-      <Route path="/profile" render={ () => <Content title={username} component={Profile} /> } />
-      <Route path="/bookmarks" render={ () => <Content title="Bookmarks" component={Profile} /> } />
-      <Route path="/messages" render={ () => <Content title="Messages" component={Profile} /> } />
+      <Route path="/profile" render={ () => <Content title={currentUser.username} component={Profile} /> } />
+      <Route path="/notifications" render={ () => <Content title="Notifications" component={Notifications} /> } />
+      <Route path="/bookmarks" render={ () => <Content title="Bookmarks" component={Bookmarks} /> } />
+      <Route path="/messages" render={ () => <Content title="Messages" component={Messages} /> } />
 
       <Sidebar />
 

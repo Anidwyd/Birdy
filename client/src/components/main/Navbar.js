@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { ReactComponent as BookmarkIcon } from '../../icons/bookmark.svg'
-import { ReactComponent as ContactsIcon } from '../../icons/contacts.svg'
+import { ReactComponent as BellIcon } from '../../icons/bell.svg'
 import { ReactComponent as HomeIcon } from '../../icons/home.svg'
 import { ReactComponent as Logo } from '../../icons/logo.svg'
 import { ReactComponent as MessageIcon } from '../../icons/message.svg'
@@ -31,9 +31,9 @@ export default function Navbar() {
         <NavLink exact className="logo nav-link" to="/home"><Logo /></NavLink>
         <NavItem to="/home" icon={<HomeIcon />} name="Home" />
         <NavItem to="/profile" icon={<ProfileIcon />} name="Profile" />
+        <NavItem to="/notifications" icon={<BellIcon />} name="Notifications" />
         <NavItem to="/bookmarks" icon={<BookmarkIcon />} name="Bookmarks" />
         <NavItem to="/messages" icon={<MessageIcon />} name="Messages" />
-        <NavItem to="/contacts" icon={<ContactsIcon />} name="Contacts" />
         <Logout />
       </ul>
     </nav>

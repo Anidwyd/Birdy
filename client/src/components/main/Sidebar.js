@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import FriendList from '../friends/FriendList'
+import UserList from '../users/UserList'
 
 import '../../styles/components/Sidebar.css'
 import SearchBar from '../Searchbar';
@@ -7,10 +7,26 @@ import axios from '../../axios';
 
 export default function Sidebar() {
   const [friends, setFriends] = useState([
-    { username: 'michmich' },
-    { username: 'fred' },
-    { username: 'pikachu' }
+    { firstname: 'Jean', lastname: 'Castout' },
+    { firstname: 'Emmanuel', lastname: 'Macon' },
+    { firstname: 'Christophe', lastname: 'Castamère' },
+    { firstname: 'Jean-Michel', lastname: 'Blancoeur' }
   ]);
+
+  const [suggestions, setSuggestions] = useState([])
+
+  const noSuggestions = !suggestions || (suggestions && suggestions.length === 0)
+
+  const getSuggestions = async () => {
+    const response = await axios
+      .get("user")
+      .catch((err) => console.log("Error: ", err));
+
+    if (response && response.data) {
+      setSuggestions(response.data);
+      console.log(response.data)
+    }
+  }
 
   function StackItem(props) {
     return (
@@ -20,19 +36,8 @@ export default function Sidebar() {
     )
   }
 
-  const noFriends = !friends || (friends && friends.length === 0)
-
-  const getFriends = async () => {
-    const response = await axios
-      .get("api/user/1")
-      .catch((err) => console.log("Error:", err));
-
-    if (response && response.data) setFriends([response.data]);
-  }
-
   useEffect(() => {
-    getFriends();
-    console.log(friends)
+    getSuggestions();
   }, [])
 
   return (
@@ -43,13 +48,17 @@ export default function Sidebar() {
         </div>
         <StackItem>
           <h2 className="stack-title">Friends</h2>
-          <FriendList className="stack-list" friends={friends} />
+          <UserList className="stack-list" users={friends} />
           <span className="stack-more">See more</span>
         </StackItem>
         <StackItem>
           <h2 className="stack-title">Suggestions</h2>
-          <FriendList className="stack-list" friends={friends} />
-          <span className="stack-more">See more</span>
+          {noSuggestions
+              ? <h4 style={{textAlign: 'center', color: 'var(--clr-txt-500)', fontWeight: '500'}}>No suggestions</h4>
+              : <>
+                  <UserList className="stack-list" users={suggestions} />
+                  <span className="stack-more">See more</span>
+                </>}
         </StackItem>
       </div>
     </aside>

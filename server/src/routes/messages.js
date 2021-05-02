@@ -3,6 +3,12 @@ const router = express.Router()
 
 function init(collection) {
 
+  router.use((req, res, next) => {
+		console.log('Message: method %s, path %s', req.method, req.path);
+		console.log('Body', req.body);
+		next();
+	});
+
   // Get all
   router.get('/', (req, res) => {
     return new Promise( (resolve, reject) => {
@@ -16,9 +22,9 @@ function init(collection) {
   });
 
   // Get all from a user
-  router.get('/user/:user_id/', (req, res) => {
+  router.get('/user/:user_id', (req, res) => {
     return new Promise( (resolve, reject) => {
-      collection.find({user_id: req.params.user_id}, (err, docs) => {
+      collection.find({user_id: parseInt(req.params.user_id)}, (err, docs) => {
         if (err)
           reject(res.status(500).json(err.message));
         else

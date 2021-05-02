@@ -57,7 +57,7 @@ class Users {
     });
   }
 
-  async exists(login) {
+  exists(login) {
     return new Promise((resolve, reject) => {
       const req = this.db.prepare("SELECT login FROM users WHERE login=?"); 
       req.get([login], (err, row) => {

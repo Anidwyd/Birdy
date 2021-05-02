@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import axios from '../../../axios'
 import MessageForm from '../../messages/MessageForm';
 import MessageList from '../../messages/MessageList';
+import Spacer from '../../Spacer';
 
 export default function Home() {
   const [messages, setMessages] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const noMessages = !messages || (messages && messages.length === 0)
 
   const getMessages = async () => {
+    setLoading(true)
     const response = await axios
       .get("messages")
       .catch((err) => console.log("Error: ", err));
@@ -17,6 +20,7 @@ export default function Home() {
       setMessages(response.data);
       console.log(response.data)
     }
+    setLoading(false)
   }
 
   const addMessage = async (data) => {
@@ -35,9 +39,10 @@ export default function Home() {
   return (
     <div className="home">
       <MessageForm addMessage={addMessage} />
-      <div className="home-spacer"></div>
-      {noMessages ? <h2 style={{textAlign: 'center'}}>It's calm in here...</h2>
-                  : <MessageList messages={messages} />}
+      <Spacer />
+      {!noMessages ? <MessageList messages={messages} />
+                   : loading ? <></>
+                             : <h2 style={{textAlign: 'center', color: 'var(--clr-txt-500)'}}>It's calm in here...</h2>}
     </div>
   )
 }

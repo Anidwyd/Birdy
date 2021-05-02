@@ -1,6 +1,6 @@
 const express = require("express");
 
-const Users = require("./entities/users.js");
+const Users = require("./entities/User.js");
 const Friends = require("./entities/friends.js");
 const Messages = require("./entities/messages.js");
 

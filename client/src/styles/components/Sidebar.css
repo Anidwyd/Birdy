@@ -28,17 +28,17 @@
   border-bottom: var(--border);
 }
 
-.friend-card, .stack-more {
+.user-card, .stack-more {
   padding: 1rem;
   transition: var(--speed);
 }
 
-.stack-more:hover, .friend-card:hover {
+.stack-more:hover, .user-card:hover {
   background-color: rgba(255, 255, 255, 0.025);
   cursor: pointer;
 }
 
-.friend-card {
+.user-card {
   border-bottom: var(--border);
 }
 
