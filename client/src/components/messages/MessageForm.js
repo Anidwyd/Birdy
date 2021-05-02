@@ -23,8 +23,8 @@ export default function MessageForm({ addMessage }) {
     e.preventDefault();
 
     const data = {
-      user_id: 2,
-      author_name: 'Harold',
+      user_id: currentUser.user_id,
+      author_name: currentUser.firstname + " " + currentUser.lastname,
       content: formValue
     }
 

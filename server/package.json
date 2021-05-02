@@ -1,7 +1,7 @@
 {
-  "name": "touitere",
+  "name": "birdy-server",
   "version": "1.0.0",
-  "description": "Mon app touitère côté serveur",
+  "description": "Server side of the Birdy application",
   "main": "index.js",
   "scripts": {
     "test": "mocha test",

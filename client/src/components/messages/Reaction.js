@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import '../../styles/components/Reaction.css'
 
-export default function Reaction({ icon, variant, children }) {
+export default function Reaction({ icon, variant, children, like }) {
 
   const [toggled, setToggle] = useState(false);
 
@@ -12,11 +12,17 @@ export default function Reaction({ icon, variant, children }) {
     ${toggled ? "toggled" : ""}
   `;
 
+  const handleClick = () => {
+    setToggle(!toggled)
+    if (like)
+      like()
+  }
+
   return (
     <div className="reaction noselect">
       <span
         className={className}
-        onClick={() => setToggle(!toggled)}>
+        onClick={handleClick}>
         { icon }
         { children }
       </span>

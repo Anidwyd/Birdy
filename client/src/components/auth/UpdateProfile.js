@@ -53,7 +53,7 @@ export default function UpdateProfile() {
           ref={emailRef}
           placeholder="Enter new email"
           required
-          defaultValue={"gege@gmail.com"}>
+          defaultValue={currentUser.email}>
             Email
           </FormGroup>
         <FormGroup id="password" type="password" ref={passwordRef} placeholder="Enter new password">Password</FormGroup>

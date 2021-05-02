@@ -27,7 +27,36 @@ function init(collection) {
     });
   });
 
-  // Get one
+  // Get / like one
+  router.get('/:message_id', async (req, res) => {
+    try {
+      const user_id = req.session.user_id
+      const message_id = req.params.message_id
+      const already_liked = await has_liked(user_id, message_id)
+      if (!already_liked) {
+        const response = await collection.update({_id: message_id}, {$push : {likers: user_id}});
+			  res.json(response)
+      }
+      else {
+        const response = await collection.update({_id: message_id}, {$pull : {likers: user_id}});
+			  res.json(response)
+      }
+    }
+    catch (err) {
+      res.status(500).json(err.message)
+    }
+  })
+
+  const has_liked = (user_id, message_id) => {
+		return new Promise((resolve, reject) => {
+			collection.findOne({_id: message_id, likers : user_id}, (err, doc) =>{
+				if (err)
+          reject(err);
+				else
+          resolve(doc != undefined);
+			})
+		})
+	}
 
   // Create one
   router.post('/', async (req, res) => {

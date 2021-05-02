@@ -20,7 +20,7 @@ export default function Logout() {
       await logout();
       history.push('/login')
     } catch {
-      setError('Failed to log out.');
+      setError('Failed to log out');
     }
   }
 

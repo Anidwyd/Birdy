@@ -21,8 +21,7 @@ class Users {
       const req = this.db.prepare("INSERT INTO users VALUES(?, ?, ?, ?)");
       req.run([login, password, lastname, firstname], (err) => {
         if (err) {
-          console.log('Erreur SQL: ', err);
-          reject();
+          reject(console.log('Erreur SQL: ', err));
         } else {
           resolve(req.lastID);
         }
@@ -74,11 +73,10 @@ class Users {
 
   checkpassword(login, password) {
     return new Promise((resolve, reject) => {
-      const req = this.db.prepare("SELECT rowid FROM users WHERE login=? AND password =?");
+      const req = this.db.prepare("SELECT rowid FROM users WHERE login=? AND password=?");
       req.get([login, password], (err, row) => {
-        if(err) {
-          console.log('Erreur SQL: ', err);
-          reject();
+        if (err) {
+          reject(console.log('Erreur SQL: ', err));
         } else {
           resolve(row.rowid);
         }
@@ -86,11 +84,11 @@ class Users {
     });
   }
 
-  search(query){
+  search(query) {
     return new Promise((resolve, reject) => {
       const req = this.db.prepare("SELECT firstname, lastname, rowid FROM users WHERE firstname LIKE %?% OR lastname LIKE %?%");
       req.all([query, query], (err, rows) => {
-        if(err) {
+        if (err) {
           console.log('Erreur SQL: ', err);
           reject();
         } else {

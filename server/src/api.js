@@ -59,6 +59,7 @@ function init(db, mongodb) {
 							res.status(200).json({
 								status: 200,
 								user: user,
+								user_id: user_id,
 								message: "Login and password accepted"
 							});
 						}
@@ -104,7 +105,8 @@ function init(db, mongodb) {
 		.route("/user/:user_id(\\d+)")
 		.get(async (req, res) => {
 			try {
-				const user = await users.get(req.params.user_id);
+				const user_id = req.params.user_id;
+				const user = await users.get(user_id);
 				if (!user)
 					res.sendStatus(404);
 				else
@@ -143,6 +145,7 @@ function init(db, mongodb) {
 					users.create(login, password, lastname, firstname)
 						.then((user_id) => res.status(201).send({
 							status: 201,
+							user_id: user_id,
 							message: `User ${user_id} created`
 						}))
 						.catch((err) => res.status(500).send(err));

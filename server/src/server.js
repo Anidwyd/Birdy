@@ -1,4 +1,4 @@
-const api = require('./api.js');
+// const api = require('./api.js');
 
 const express = require('express');
 const app = express()
@@ -11,7 +11,6 @@ const sqldb = new sqlite3.Database('memory');
 const mongodb = {};
 mongodb.messages = new nedb();
 mongodb.messages.loadDatabase();
-
 
 app.use(express.json());
 app.use((_req, res, next) => {
@@ -26,7 +25,10 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-app.use('/api', api.default(sqldb, mongodb));
+// app.use('/api', api.default(sqldb, mongodb));
+
+const userRouter = require('./routes/users')(sqldb)
+app.use('/user', userRouter)
 
 const messagesRouter = require('./routes/messages')(mongodb.messages)
 app.use('/messages', messagesRouter)

@@ -25,27 +25,14 @@ export default function Signup() {
       return setError("Passwords do not match")
     }
 
-    history.push("/");
-
-    setError("");
-    setLoading(true);
-
-    signup(firstnameRef.current.value, lastnameRef.current.value, emailRef.current.value, passwordRef.current.value)
-      .then(() => {
-        login(emailRef.current.value, passwordRef.current.value)
-          .then((res) => {
-            history.push("/")
-            console.log(res)
-          })
-          .catch((err) => {
-            setError("Failed to log in");
-            console.log(err)
-          });
-      })
-      .catch((err) => {
-        setError("Failed to sign up");
-        console.log(err)
-      });
+    try {
+      setError("");
+      setLoading(true);
+      await signup(firstnameRef.current.value, lastnameRef.current.value, emailRef.current.value, passwordRef.current.value);
+      history.push("/");
+    } catch {
+      setError("Failed to sign up")
+    }
 
     setLoading(false);
   }

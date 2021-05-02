@@ -18,20 +18,15 @@ export default function Signup() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    console.log(emailRef.current.value)
-
-    setError("");
-    setLoading(true);
-
-    await login(emailRef.current.value, passwordRef.current.value)
-      .then((res) => {
-        history.push("/")
-        console.log(res)
-      })
-      .catch((err) => {
-        setError("Failed to log in");
-        console.log(err)
-      });
+    try {
+      setError("");
+      setLoading(true);
+      await login(emailRef.current.value, passwordRef.current.value)
+      history.push("/")
+    }
+    catch {
+      setError("Failed to log in")
+    }
 
     setLoading(false);
   }
