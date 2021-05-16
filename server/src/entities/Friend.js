@@ -1,4 +1,4 @@
-class Friends {
+class Friend {
   constructor(db) {
     this.db = db
     const req = `
@@ -22,7 +22,6 @@ class Friends {
           console.log('Erreur SQL: ', err);
           reject();
         } else {
-          console.log('Pas derreur, trop de chance !');
           resolve(req.lastID);
         }
       });
@@ -73,5 +72,5 @@ class Friends {
 
 }
 
-exports.default = Friends;
+exports.default = Friend;
 

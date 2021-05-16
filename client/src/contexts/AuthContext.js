@@ -8,7 +8,12 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState({
+      user_id: 1,
+      email: "jules@mail.com",
+      password: "password",
+      username: "Jules Dubreuil"
+    });
   const [loading, setLoading] = useState(true)
 
   async function signup(firstname, lastname, email, password) {
@@ -19,22 +24,26 @@ export function AuthProvider({ children }) {
       lastname: lastname
     }
 
-    return axios.post("user", user)
+    const response = axios.post("user", user)
+    
+    // await setUser()
+
+    return response
   }
 
   async function login(email, password) {
-    const response = await axios.post("user/login", {
+    const response = await axios.post("authentification", {
         login: email,
         password: password
       })
 
-    await setUser()
+    // await setUser()
 
     return response
   }
 
   function logout() {
-    return axios.delete("user/logout")
+    return axios.delete("authentification")
   }
 
   function resetPassword(email) {
@@ -50,7 +59,7 @@ export function AuthProvider({ children }) {
   }
 
   async function setUser() {
-    const response = await axios.get("user/login");
+    const response = await axios.get("authentification");
 
     if (response && response.data && response.data["status"] === "200") {
       const user_id = response.data["user_id"]
@@ -63,12 +72,7 @@ export function AuthProvider({ children }) {
         username: user["firstname"] + ' ' + user["lastname"]
       })
     } else {
-      setCurrentUser({
-        user_id: 1,
-        email: "jules@mail.com",
-        password: "password",
-        username: "Jules Dubreuil"
-      })
+      setCurrentUser({})
     }
 
     console.log(response);
@@ -77,15 +81,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    // const unsubscribe = axios.get("user/login")
-    //   .then((res) => {
-    //     console.log("response:", res.data)
     setLoading(false)
-    //   })
-    //   .catch((err) => console.log(err))
-
-    // return unsubscribe
-
   }, []);
 
   const value = {

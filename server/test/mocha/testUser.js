@@ -1,7 +1,6 @@
 const chaiHttp = require('chai-http');
 const chai = require('chai');
-const app = require('../src/server.js/index.js'); // c'est l'app "express"
-//import { describe, it } from 'mocha'
+const app = require('../../src/server.js'); // c'est l'app "express"
 const mocha = require('mocha');
 
 // Configurer chai
@@ -19,22 +18,22 @@ mocha.describe("Test de l'API user", () => {
         };
 
         request
-            .post('/api/user')
+            .post('/user')
             .send(user)
 
             .then((res) => {
                 res.should.have.status(201);
-                console.log(`Retrieving user ${res.body.id}`)
+                console.log(`Retrieving user ${res.body.user_id}`)
                 return Promise.all([
                     request
-                        .get(`/api/user/${res.body.id}`)
+                        .get(`/user/${res.body.user_id}`)
                         .then((res) => {
                             res.should.have.status(200)
                             chai.assert.deepEqual(res.body, user)
                         }),
 
                     request
-                        .get(`/api/user/4`)
+                        .get(`/user/4`)
                         .then((res) => {
                             res.should.have.status(404)
                         }),

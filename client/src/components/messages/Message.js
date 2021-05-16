@@ -41,7 +41,7 @@ export default function Message({ id, author_name, content, date, comments, like
 
   const likeMessage = async () => {
     return await axios
-      .get(`messages/${id}`)
+      .get(`messages/like/${id}`)
       .catch((err) => console.log("Error: ", err));
   }
   
